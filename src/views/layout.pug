@@ -1,0 +1,63 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title
+    //- BOOTSTRAP
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    script(defer src="/js/bootstrap.bundle.min.js")
+  body
+    header.mb-4
+      nav.navbar.navbar-expand-lg.bg-body-tertiary
+        div.container-fluid
+          a.navbar-brand(href="#") Navbar
+          button.navbar-toggler(type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+
+    main
+      div(class='container-fluid')
+        div(class='row')
+          block sidebar
+            aside.col-lg-3.col-xl-2.d-none.d-lg-block.p-3.border-end(aria-label="Sidebar")
+              h4 Menu
+              nav.nav.flex-column
+                a.nav-link.border-bottom(href="/catalog") Home
+                a.nav-link.border-bottom(href="/catalog/books") All books
+                a.nav-link.border-bottom(href="/catalog/authors") All authors
+                a.nav-link.border-bottom(href="/catalog/genres") All genres
+                a.nav-link(href="/catalog/bookinstances") All book-instances
+                hr
+                a.nav-link.border-bottom(href="/catalog/author/create") Create new author
+                a.nav-link.border-bottom(href="/catalog/genre/create") Create new genre
+                a.nav-link.border-bottom(href="/catalog/book/create") Create new book
+                a.nav-link.border-bottom(href="/catalog/bookinstance/create") Create new book instance (copy)
+
+          section(class='col-lg-9 col-xl-10')
+            block content
+
+    footer(class="bg-body-tertiary text-center text-lg-start")
+      div(class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);")
+        p(class="text-body") © #{currentYear}
+          a(href="https://example.com") Express Local Library.
+    
+  div.offcanvas.offcanvas-start(tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel")
+    div.offcanvas-header
+      h5.offcanvas-title(id="sidebarLabel") Menu
+      button(type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close")
+
+    div.offcanvas-body
+      nav.nav.flex-column
+        a.nav-link.border-bottom(href="/catalog") Home
+        a.nav-link.border-bottom(href="/catalog/books") All books
+        a.nav-link.border-bottom(href="/catalog/authors") All authors
+        a.nav-link.border-bottom(href="/catalog/genres") All genres
+        a.nav-link(href="/catalog/bookinstances") All book-instances
+        hr
+        a.nav-link.border-bottom(href="/catalog/author/create") Create new author
+        a.nav-link.border-bottom(href="/catalog/genre/create") Create new genre
+        a.nav-link.border-bottom(href="/catalog/book/create") Create new book
+        a.nav-link.border-bottom(href="/catalog/bookinstance/create") Create new book instance (copy)
+
+
+    

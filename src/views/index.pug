@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.col-lg-9.col-xl-10
+    div.container-fluid
+      div.p-5.mb-4.bg-light.rounded-3.shadow
+        div.container-fluid.py-5
+          h1.display-3 Express Library
+          p.lead.fs-4
+            | Welcome to
+            em Express Library
+            | , a very basic Node.js/Express website.
+
+  h2(class="mb-3") Catalog Records
+
+  p The library has the following record counts:
+
+  ul(class="list-group list-group-flush")
+    li(class="list-group-item border-0") #[strong Books:] !{book_count}
+    li(class="list-group-item border-0") #[strong Copies:] !{book_instance_count}
+    li(class="list-group-item border-0") #[strong Copies available:] !{book_instance_available_count}
+    li(class="list-group-item border-0") #[strong Authors:] !{author_count}
+    li(class="list-group-item border-0") #[strong Genres:] !{genre_count}

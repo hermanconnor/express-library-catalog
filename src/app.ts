@@ -4,6 +4,8 @@ import morgan from 'morgan';
 
 import notFound from './middleware/notFound';
 import errorHandler from './middleware/errorHandler';
+import indexRouter from './routes/index';
+import catalogRouter from './routes/catalog';
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 // ROUTES
+app.use('/', indexRouter);
+app.use('/catalog', catalogRouter);
 
 // 404 HANDLER
 app.use(notFound);
