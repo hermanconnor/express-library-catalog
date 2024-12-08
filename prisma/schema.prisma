@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Author {
+  id            Int       @id @default(autoincrement())
+  first_name    String
+  family_name   String
+  date_of_birth DateTime?
+  date_of_death DateTime?
+  books         Book[]
+
+  @@map("authors")
+}
+
+model Book {
+  id        Int            @id @default(autoincrement())
+  title     String
+  summary   String
+  isbn      String
+  authorId  Int
+  author    Author         @relation(fields: [authorId], references: [id])
+  instances BookInstance[]
+  genres    Genre[]        @relation("BookGenres") // Many-to-many relation with Genre
+  BookGenre BookGenre[]
+
+  @@map("books")
+}
+
+model Genre {
+  id        Int         @id @default(autoincrement())
+  name      String
+  books     Book[]      @relation("BookGenres") // Many-to-many relation with Book
+  BookGenre BookGenre[]
+
+  @@map("genres")
+}
+
+model BookInstance {
+  id       Int       @id @default(autoincrement())
+  bookId   Int
+  imprint  String
+  status   String    @default("Maintenance")
+  due_back DateTime? @default(now())
+  book     Book      @relation(fields: [bookId], references: [id])
+
+  @@map("book_instances")
+}
+
+model BookGenre {
+  bookId  Int
+  genreId Int
+  book    Book  @relation(fields: [bookId], references: [id])
+  genres  Genre @relation(fields: [genreId], references: [id])
+
+  @@id([bookId, genreId]) // Composite primary key for the join table
+  @@map("book_genres")
+}
