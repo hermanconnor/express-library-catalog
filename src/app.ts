@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 
 // ROUTES
 app.use('/', indexRouter);
-app.use('/catalog', catalogRouter);
+app.use(catalogRouter);
 
 // 404 HANDLER
 app.use(notFound);

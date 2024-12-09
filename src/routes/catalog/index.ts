@@ -1,11 +1,8 @@
 import { Router } from 'express';
-import * as indexController from '../../controllers/indexController';
-import bookRouter from './book';
+import bookRouter from './books';
 
 const router = Router();
 
-router.use('/', indexController.allCounts);
-
-router.use('/book', bookRouter);
+router.use('/catalog', bookRouter);
 
 export default router;
