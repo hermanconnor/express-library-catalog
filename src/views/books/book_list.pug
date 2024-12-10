@@ -1,14 +1,29 @@
 extends ../layout
 
 block content
-  h1= title
-  
-  if book_list.length
-    ul(class="list-group list-group-light")
-      each book in book_list
-        li(class="list-group-item border-0")
-          a(href=book.url) #{book.title}
-          |  (#{book.author.name})
+  h1.my-3= title
 
+  if book_list.length
+    .table-responsive
+      table.table
+        thead
+          tr
+            th(scope="col") Title
+            th(scope="col") Author
+            th(scope="col") Genre
+            th(scope="col") ISBN
+        tbody
+          each book in book_list
+            tr
+              td
+                a(href=book.url) #{book.title}
+              td #{book.author.first_name} #{book.author.family_name}
+              td
+                | 
+                each genre, index in book.genres
+                  if index > 0
+                    | , 
+                  | #{genre.name}
+              td #{book.isbn}
   else
     p(class="lead") There are no books.
