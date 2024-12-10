@@ -46,3 +46,20 @@ export const bookList: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+export const bookCreateGet: RequestHandler = async (req, res, next) => {
+  try {
+    const [allAuthors, allGenres] = await Promise.all([
+      AuthorService.getAllAuthors(),
+      GenreService.getAllGenres(),
+    ]);
+
+    res.render('books/book_form', {
+      title: 'Create Book',
+      authors: allAuthors,
+      genres: allGenres,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

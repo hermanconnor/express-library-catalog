@@ -23,7 +23,7 @@ html(lang='en')
       div(class='container-fluid')
         div(class='row')
           block sidebar
-            aside.col-lg-3.col-xl-2.d-none.d-lg-block.p-3.border-end(aria-label="Sidebar")
+            aside.col-lg-3.col-xl-2.d-none.d-lg-block.p-3.border-end.min-vh-100(aria-label="Sidebar")
               h4 Menu
               nav.nav.flex-column
                 a.nav-link.border-bottom(href="/catalog") Home
@@ -37,7 +37,7 @@ html(lang='en')
                 a.nav-link.border-bottom(href="/catalog/book/create") Create new book
                 a.nav-link.border-bottom(href="/catalog/bookinstance/create") Create new book instance (copy)
 
-          section(class='col-lg-9 col-xl-10')
+          section.col-lg-9.col-xl-10.min-vh-100
             block content
 
     footer(class="bg-body-tertiary text-center text-lg-start")
