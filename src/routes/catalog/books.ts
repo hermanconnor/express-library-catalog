@@ -23,6 +23,16 @@ router.post(
   bookController.bookDeletePost,
 );
 
+// GET request to Update Book.
+router.get('/book/:id/update', validateParamsId, bookController.bookUpdateGet);
+
+// POST request to Update Book.
+router.post(
+  '/book/:id/update',
+  validateParamsId,
+  bookController.bookUpdatePost,
+);
+
 // GET request for list of all Book.
 router.get('/books', bookController.bookList);
 

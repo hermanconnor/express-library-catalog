@@ -63,6 +63,24 @@ class BookService {
     });
   }
 
+  static async updateBook(id: number, data: BookType) {
+    const book = await prisma.book.update({
+      where: { id },
+      data: {
+        title: data.title,
+        author: { connect: { id: parseInt(data.author, 10) } },
+        summary: data.summary,
+        isbn: data.isbn,
+        genres: {
+          set: data.genre?.map((genreId) => ({ id: parseInt(genreId, 10) })),
+        },
+        
+      },
+    });
+
+    return this.addVirtualFields(book);
+  }
+
   private static addVirtualFields(book: Book) {
     return {
       ...book,
