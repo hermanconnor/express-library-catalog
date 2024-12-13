@@ -49,6 +49,29 @@ export const bookList: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const bookDetail: RequestHandler = async (req, res, next) => {
+  try {
+    const bookId = req.id as number;
+
+    const [book, bookInstances] = await Promise.all([
+      BookService.getBookById(bookId),
+      BookinstanceService.getBookInstancesByBookId(bookId),
+    ]);
+
+    if (!book) {
+      return next(createHttpError(404, 'Book not found'));
+    }
+
+    res.render('books/book_detail', {
+      title: book.title,
+      book,
+      book_instances: bookInstances,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const bookCreateGet: RequestHandler = async (req, res, next) => {
   try {
     const [allAuthors, allGenres] = await Promise.all([

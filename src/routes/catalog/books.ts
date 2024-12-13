@@ -4,19 +4,19 @@ import { validateParamsId } from '../../middleware/validateParamsId';
 
 const router = Router();
 
-// GET catalog home page
+// GET catalog Home Page
 router.get('/', bookController.index);
 
-// GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
+// GET request for creating a Book.
 router.get('/book/create', bookController.bookCreateGet);
 
-// POST request for creating Book.
+// POST request for Creating Book.
 router.post('/book/create', bookController.bookCreatePost);
 
-// GET request to delete Book.
+// GET request to Delete Book.
 router.get('/book/:id/delete', validateParamsId, bookController.bookDeleteGet);
 
-// POST request to delete Book
+// POST request to Delete Book
 router.post(
   '/book/:id/delete',
   validateParamsId,
@@ -32,6 +32,9 @@ router.post(
   validateParamsId,
   bookController.bookUpdatePost,
 );
+
+// GET request for Single Book.
+router.get('/book/:id', validateParamsId, bookController.bookDetail);
 
 // GET request for list of all Book.
 router.get('/books', bookController.bookList);
