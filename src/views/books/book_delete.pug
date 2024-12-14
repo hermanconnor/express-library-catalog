@@ -2,50 +2,47 @@ extends ../layout
 
 block content
 
-  h1 #{title}: #{book.title}
+  h1(class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-5 text-balance") #{title}: #{book.title}
 
-  p #[strong Author: ]
-    a(href=book.author.url) #{book.author.name}
-  p #[strong Summary:] #{book.summary}
-  p #[strong ISBN:] #{book.isbn}
-  p #[strong Genre: ]
+  p(class="mb-4") #[strong Author: ]
+    a(href=book.author.url class="link link-primary link-hover") #{book.author.name}
+  p(class="text-balance mb-4") #[strong Summary:] #{book.summary}
+  p(class="mb-4") #[strong ISBN:] #{book.isbn}
+  p(class="mb-4") #[strong Genre: ]
     each genre, index in book.genres
-      a(href=`/catalog/genre/${genre.id}`) #{genre.name}
+      a(href=`/catalog/genre/${genre.id}` class="link link-primary link-hover") #{genre.name}
       if index < book.genres.length - 1
         |,&nbsp;
 
   hr
 
   if book_instances.length
-
-    p #[strong Delete the following copies before attempting to delete this Book.]
-
-    div(style='margin-left:20px;margin-top:20px')
-
-      h4 Copies
+    p(class="text-lg mt-4 text-info text-balance") #[strong Delete the following copies before attempting to delete this Book.]
+    div(class="ml-5 mt-5 space-y-3")
+      h4(class="text-3xl mb-3") Copies
 
       each book_copy in book_instances
         hr
         if book_copy.status=='Available'
           p
-            span.badge.text-bg-success.text-uppercase #{book_copy.status}
+            span(class="badge badge-success bg-success/10 badge-outline badge-md uppercase font-semibold") #{book_copy.status}
         else if book_copy.status=='Maintenance'
           p
-            span.badge.text-bg-danger.text-uppercase #{book_copy.status}
+            span(class="badge badge-error bg-error/10 badge-outline badge-md uppercase font-semibold") #{book_copy.status}
         else
           p
-            span.badge.text-bg-warning.text-uppercase #{book_copy.status}
+            span(class="badge badge-warning bg-warning/10 badge-outline badge-md uppercase font-semibold") #{book_copy.status}
         p #[strong Imprint:] #{book_copy.imprint}
         if book_copy.status!='Available'
           p #[strong Due back:] #{book_copy.due_back_formatted}
         p #[strong Id:] 
-          a(href=book_copy.url) #{book_copy.id}
+          a(href=`/catalog/bookinstance/${book_copy.id}` class="link link-primary link-hover text-lg") #{book_copy.id}
 
   else
-    p Do you really want to delete this Book?
+    p(class="text-lg") Do you really want to delete this Book?
 
     form(method='POST')
       div.form-group
-        input#id.form-control(type='hidden',name='id', value=book.id )
+        input#id(type='hidden', name='id', value=book.id )
 
-      button.btn.btn-danger(type='submit') Delete
+      button(type='submit' class="btn btn-error") Delete

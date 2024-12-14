@@ -1,12 +1,12 @@
 extends ../layout
 
 block content
-  h1.my-3= title
+  h1(class="my-3 text-3xl md:text-4xl lg:text-5xl mb-5")= title
 
   if book_list.length
-    .table-responsive
-      table.table.table-borderless
-        thead
+    div(class="overflow-x-auto")
+      table(class="table")
+        thead(class="text-base lg:text-lg text-primary")
           tr
             th(scope="col") Title
             th(scope="col") Author
@@ -14,9 +14,9 @@ block content
             th(scope="col") ISBN
         tbody
           each book in book_list
-            tr
+            tr(class="lg:text-base")
               td
-                a(href=book.url) #{book.title}
+                a(href=book.url class="link link-hover") #{book.title}
               td #{book.author.first_name} #{book.author.family_name}
               td
                 | 
