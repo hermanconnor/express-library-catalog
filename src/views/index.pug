@@ -1,23 +1,21 @@
 extends layout
 
 block content
-  div.hero.p-5.mb-4.text-center.rounded-3.shadow
-    div
-      div.d-flex.justify-content-center.align-items-center.h-100
-        div.text-white
-          h1.display-1 Express Library
-          p.lead.fs-4.fw-semibold
-            | Welcome to 
-            em Express Library
-            | , your local hub for knowledge, learning, and community connection.
+  header(class="hero" style="background-image: url(images/books.webp); height: 400px;")
+    div(class="hero-overlay bg-opacity-60")
+    div(class="hero-content text-white text-center")
+      div(class="max-w-md")
+        h1(class="mb-5 text-4xl md:text-5xl lg:text-6xl font-bold")= title
+        p(class="mb-5 text-xl md:text-2xl font-semibold") Welcome to #[em Express Library], your local hub for knowledge, learning, and community connection.
+        
+  div(class="py-5 space-y-2")
+    h2(class="text-3xl font-semibold") Record Counts
 
-  h2(class="mb-3") Catalog Records
+    p(class="text-lg") The library has the following record counts:
 
-  p The library has the following record counts:
-
-  ul(class="list-group list-group-flush")
-    li(class="list-group-item border-0") #[strong Books:] !{book_count}
-    li(class="list-group-item border-0") #[strong Copies:] !{book_instance_count}
-    li(class="list-group-item border-0") #[strong Copies available:] !{book_instance_available_count}
-    li(class="list-group-item border-0") #[strong Authors:] !{author_count}
-    li(class="list-group-item border-0") #[strong Genres:] !{genre_count}
+    ul(class="space-y-3")
+      li(class="") #[strong Books:] !{book_count}
+      li(class="") #[strong Copies:] !{book_instance_count}
+      li(class="") #[strong Copies available:] !{book_instance_available_count}
+      li(class="") #[strong Authors:] !{author_count}
+      li(class="") #[strong Genres:] !{genre_count}
