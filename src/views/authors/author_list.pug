@@ -1,14 +1,14 @@
 extends ../layout
 
 block content
-  h1= title
+  h1(class="text-3xl md:text-4xl lg:text-5xl mb-5")= title
 
   if author_list.length
-    ul.list-group.list-group-flush
+    ul(class="space-y-6")
       each author in author_list
-        li.list-group-item
-          a(href=author.url) #{author.name}
+        li(class="")
+          a(href=author.url class="link link-primary link-hover text-lg") #{author.name}
           |  (#{author.lifespan})
 
   else
-    p There are no authors.
+    p(class="text-lg") There are no authors.
