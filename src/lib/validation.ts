@@ -65,3 +65,13 @@ export const bookinstanceSchema = z.object({
 });
 
 export type BookinstanceType = z.infer<typeof bookinstanceSchema>;
+
+// Genre validation schema
+export const genreSchema = z.object({
+  name: z
+    .string()
+    .min(3, 'Genre name must contain at least 3 characters')
+    .trim(),
+});
+
+export type GenreType = z.infer<typeof genreSchema>;

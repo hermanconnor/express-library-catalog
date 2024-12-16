@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1(class="text-3xl md:text-4xl lg:text-5xl mb-5")= title
+  
+  if list_genres.length
+    ul(class="space-y-6")
+      each val in list_genres
+        li
+          a(href=val.url class="link link-primary link-hover text-lg") #{val.name}
+
+  else
+    p(class="text-lg") There are no genres.

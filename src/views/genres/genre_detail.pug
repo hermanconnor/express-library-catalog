@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  section
+    header
+      h1(class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-5 text-balance") Genre: #{genre.name}
+    section(class="ml-5 mt-5")
+      h2(class="text-2xl sm:text-3xl mb-3") Books
+      if genre.books.length
+        dl(class="space-y-3")
+          each book in genre.books
+            dt
+              a(href=book.url class="link link-primary link-hover text-lg") #{book.title}
+            dd(class="text-balance") #{book.summary}
+      else
+        p(class="text-lg") This genre has no books.
+
+  hr(class="my-6")
+
+  section
+    p(class="my-4")
+      a(href=genre.url + '/delete', class='text-error text-lg link link-hover') Delete genre
+    p(class="my-2")
+      a(href=genre.url + '/update' class="text-primary text-lg link link-hover") Update genre
