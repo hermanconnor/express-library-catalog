@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+  h1(class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-5 text-balance") Bookinstance ID: #{bookinstance.id}
+
+  div(class="space-y-3")
+    p #[strong Title: ]
+      a(href=`/catalog/book/${bookinstance.book.id}` class="link link-primary link-hover") #{bookinstance.book.title}
+    p #[strong Imprint:] #{bookinstance.imprint}
+
+    p #[strong Status: ]
+      if bookinstance.status=='Available'
+        span(class="badge badge-success bg-success/10 badge-outline badge-md uppercase font-semibold") #{bookinstance.status}
+      else if bookinstance.status=='Maintenance'
+        span(class="badge badge-error bg-error/10 badge-outline badge-md uppercase font-semibold") #{bookinstance.status}
+      else
+        span(class="badge badge-warning bg-warning/10 badge-outline badge-md uppercase font-semibold") #{bookinstance.status}
+
+    if bookinstance.status!='Available'
+      p #[strong Due back:] #{bookinstance.due_back_formatted}
+
+  hr(class="my-6")
+
+  p(class="my-4")
+    a(href=bookinstance.url+'/delete' class="text-error link link-hover text-lg") Delete BookInstance
+  p(class="my-2")
+    a(href=bookinstance.url+'/update' class="text-primary link link-hover text-lg") Update BookInstance

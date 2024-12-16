@@ -15,7 +15,7 @@ export const bookSchema = z.object({
 
 export type BookType = z.infer<typeof bookSchema>;
 
-// Book validation schema
+// Author validation schema
 export const authorSchema = z.object({
   first_name: z
     .string()
@@ -44,3 +44,24 @@ export const authorSchema = z.object({
 });
 
 export type AuthorType = z.infer<typeof authorSchema>;
+
+// Bookinstance validation schema
+export const bookinstanceSchema = z.object({
+  book: z.string().min(1, 'Book must be specified').trim(),
+  imprint: z.string().min(1, 'Imprint must be specified').trim(),
+  status: z.enum(['Available', 'Maintenance', 'Loaned', 'Reserved']).optional(),
+  due_back: z
+    .string()
+    .optional()
+    .refine(
+      (value) => {
+        return value ? !isNaN(Date.parse(value)) : true;
+      },
+      {
+        message: 'Invalid date',
+      },
+    )
+    .transform((val) => (val ? new Date(val) : null)),
+});
+
+export type BookinstanceType = z.infer<typeof bookinstanceSchema>;

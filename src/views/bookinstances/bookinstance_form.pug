@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  h1(class="text-3xl md:text-4xl lg:text-5xl mb-5")=title
+
+  form(method='POST' class="space-y-8")
+    div
+      label(for='book' class="block mb-1.5") Book:
+      select(id="book" name='book' class="select select-primary w-full max-w-2xl" required)
+        option(value='') --Please select a book--
+        for book in book_list
+          if selected_book==book.id
+            option(value=book.id, selected) #{book.title}
+          else
+            option(value=book.id) #{book.title}
+
+    div
+      label(for='imprint' class="block mb-1.5") Imprint:
+      input(id="imprint" type='text' placeholder='Publisher and date information' name='imprint' class="input input-bordered input-primary w-full max-w-2xl" value=(undefined===bookinstance ? '' : bookinstance.imprint) required)
+
+    div
+      label(for='due_back' class="block mb-1.5") Date when book available:
+      input(id="due_back" type='date' name='due_back' class="input input-bordered input-primary w-full max-w-2xl" value=(undefined===bookinstance ? '' : bookinstance.due_back_yyyy_mm_dd))
+
+    div
+      label(for='status' class="block mb-1.5") Status:
+      select(id="status" name='status' class="select select-primary w-full max-w-2xl" required)
+        option(value='') --Please select a status--
+        each val in ['Maintenance', 'Available', 'Loaned', 'Reserved']
+          if undefined===bookinstance || bookinstance.status!=val 
+            option(value=val)= val
+          else
+            option(value=val selected)= val
+
+    button(type='submit' class="btn btn-primary uppercase") Submit
+
+  if errors
+    for error in errors
+      div(role="alert" class="alert alert-error")
+        svg(xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24")
+          path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z")
+            
+        span #{error.message}

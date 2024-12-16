@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1(class="text-3xl md:text-4xl lg:text-5xl mb-6")= title
+
+  if bookinstance_list.length
+    ul(class="space-y-8 text-balance mb-2")
+      each val in bookinstance_list
+        li
+          a(href=val.url class="link link-hover") #{val.book.title} : #{val.imprint} -&nbsp; 
+          if val.status=='Available'
+            span(class="badge badge-success bg-success/10 badge-outline badge-md uppercase font-semibold") #{val.status}
+          else if val.status=='Maintenance'
+            span(class="badge badge-error bg-error/10 badge-outline badge-md uppercase font-semibold") #{val.status}
+          else
+            span(class="badge badge-warning bg-warning/10 badge-outline badge-md uppercase font-semibold") #{val.status}
+          if val.status!='Available'
+            span 
+              strong (Due: #{val.due_back_formatted})
+
+  else
+    p There are no book copies in this library.
