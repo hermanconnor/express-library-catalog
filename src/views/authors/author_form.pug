@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  h1(class="text-3xl md:text-4xl lg:text-5xl mb-5")=title
+
+  form(method='POST' class="space-y-6")
+    div(class="mb-4")
+      label(for='first_name' class="block mb-1.5") First Name:
+      input(id="first_name" type="text" class="input input-bordered input-primary w-full max-w-2xl" placeholder='First name (Jason)' name='first_name' value=(undefined===author ? '' : author.first_name) required)
+      
+    div(class="mb-4")
+      label(for='family_name' class="block mb-1.5") Family Name:
+      input(id="family_name" type="text" class="input input-bordered input-primary w-full max-w-2xl" placeholder='Family name (Surname)' name='family_name' value=(undefined===author ? '' : author.family_name) required)
+
+    div(class="mb-4")
+      label(for='date_of_birth' class="block mb-1.5") Date of birth:
+      input(id="date_of_birth" type='date', class="input input-bordered input-primary w-full max-w-2xl" name='date_of_birth' value=(undefined===author ? '' : author.date_of_birth_yyyy_mm_dd) )
+    div(class="mb-4")
+      label(for='date_of_death' class="block mb-1.5") Date of death:
+      input(id="date_of_death" type='date', class="input input-bordered input-primary w-full max-w-2xl" name='date_of_death' value=(undefined===author ? '' : author.date_of_death_yyyy_mm_dd) )
+
+    button(type='submit' class="btn btn-primary uppercase") Submit
+
+  //- if errors
+  //-   ul(class="list-group list-group-light")
+  //-     for error in errors
+  //-       li(class="list-group-item border-0 text-danger")!= error.message
+
+  if errors
+    for error in errors
+      div(role="alert" class="alert alert-error")
+        svg(xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24")
+          path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z")
+            
+        span #{error.message}
+            

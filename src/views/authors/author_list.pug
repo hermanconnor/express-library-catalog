@@ -6,7 +6,7 @@ block content
   if author_list.length
     ul(class="space-y-6")
       each author in author_list
-        li(class="")
+        li
           a(href=author.url class="link link-primary link-hover text-lg") #{author.name}
           |  (#{author.lifespan})
 

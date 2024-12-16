@@ -39,6 +39,12 @@ class BookService {
     return this.addVirtualFields(book);
   }
 
+  static async getBooksByAuthor(id: number) {
+    const books = await prisma.book.findMany({ where: { author: { id } } });
+
+    return books.map((book) => this.addVirtualFields(book));
+  }
+
   static async createBook(bookData: BookType) {
     const book = await prisma.book.create({
       data: {
@@ -74,7 +80,6 @@ class BookService {
         genres: {
           set: data.genre?.map((genreId) => ({ id: parseInt(genreId, 10) })),
         },
-        
       },
     });
 
