@@ -11,17 +11,17 @@ block content
     p #[strong ID]: #{bookinstance.id}
 
     p #[strong Title: ]
-      a(href=bookinstance.book.url class="link link-primary link-hover text-lg") #{bookinstance.book.title}
+      a(href=`/catalog/book/${bookinstance.book.id}` class="link link-primary link-hover text-lg") #{bookinstance.book.title}
 
     p #[strong Imprint:] #{bookinstance.imprint}
 
     p #[strong Status: ]
       if bookinstance.status=='Available'
-        span(class="badge badge-success badge-outline uppercase") #{bookinstance.status}
+        span(class="badge badge-success bg-success/10 badge-outline uppercase") #{bookinstance.status}
       else if bookinstance.status=='Maintenance'
-        span(class="badge badge-error badge-outline uppercase")  #{bookinstance.status}
+        span(class="badge badge-error bg-error/10 badge-outline uppercase")  #{bookinstance.status}
       else
-        span(class="badge badge-warning badge-outline uppercase")  #{bookinstance.status}
+        span(class="badge badge-warning bg-warning/10 badge-outline uppercase")  #{bookinstance.status}
 
     if bookinstance.status!='Available'
       p #[strong Due back:] #{bookinstance.due_back_formatted}
