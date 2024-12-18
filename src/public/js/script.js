@@ -1,6 +1,10 @@
 'use strict';
 
 const initApp = () => {
+  const year = document.getElementById('year');
+  const currentYear = new Date().getFullYear();
+  year.textContent = currentYear;
+
   const setTheme = (theme) => {
     const html = document.documentElement;
 
@@ -22,6 +26,7 @@ const initApp = () => {
   };
 
   const themeList = document.getElementById('theme-list');
+  const mobileList = document.getElementById('mobile-list');
 
   themeList.addEventListener('click', (e) => {
     if (e.target.closest('li')) {
@@ -29,6 +34,14 @@ const initApp = () => {
 
       setTheme(theme);
       closeToggle();
+    }
+  });
+
+  mobileList.addEventListener('click', (e) => {
+    if (e.target.closest('li')) {
+      const theme = e.target.closest('li').id;
+
+      setTheme(theme);
     }
   });
 

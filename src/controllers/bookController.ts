@@ -9,8 +9,6 @@ import { bookSchema } from '../lib/validation';
 
 export const index: RequestHandler = async (req, res, next) => {
   try {
-    const currentYear = new Date().getFullYear();
-
     const [
       numBooks,
       numBookInstances,
@@ -32,7 +30,6 @@ export const index: RequestHandler = async (req, res, next) => {
       book_instance_available_count: numAvailableBookInstances,
       author_count: numAuthors,
       genre_count: numGenres,
-      currentYear,
     });
   } catch (error) {
     next(error);
