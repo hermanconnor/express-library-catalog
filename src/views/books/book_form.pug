@@ -42,12 +42,12 @@ block content
 
     div
       label(class="block mb-1.5") Genre:
-      div(class="flex space-x-5 text-balance")
+      div(class="flex flex-wrap space-x-5 text-balance")
         for genre in genres
           if book && book.genres && book.genres.some(g => g.id === genre.id)
             div(class="flex items-center")
               input(type="checkbox" name="genre" class="checkbox checkbox-primary mr-1" id=genre.id value=genre.id checked)
-              label(for=genre.id class="") &nbsp;#{genre.name}
+              label(for=genre.id) &nbsp;#{genre.name}
           else
             div(class="flex items-center")
               input(type="checkbox" name="genre" class="checkbox checkbox-primary mr-1" id=genre.id value=genre.id)
