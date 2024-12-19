@@ -1,6 +1,8 @@
 import path from 'path';
 import express from 'express';
 import morgan from 'morgan';
+import helmet from 'helmet';
+import compression from 'compression';
 
 import notFound from './middleware/notFound';
 import errorHandler from './middleware/errorHandler';
@@ -16,6 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
+app.use(helmet());
+app.use(compression());
 
 // ROUTES
 app.use('/', indexRouter);
