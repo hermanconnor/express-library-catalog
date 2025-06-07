@@ -19,6 +19,11 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
+app.use((req, res, next) => {
+  res.locals.year = new Date().getFullYear();
+  next();
+});
+
 app.use(limiter);
 
 app.set('views', path.join(__dirname, 'views'));

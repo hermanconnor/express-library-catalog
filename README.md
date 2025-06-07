@@ -4,7 +4,7 @@
 
 ## ✨ Overview
 
-This project was originally one of my projects from the [Treehouse](https://teamtreehouse.com/) Full Stack JavaScript Techdegree Certificate. I repeated the project from scratch using prisma and typescript, and expanded upon it with the [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs) Web Docs guide on Server-Side Website Programming.
+This project was originally one of my projects from the [Treehouse](https://teamtreehouse.com/techdegree/full-stack-javascript) Full Stack JavaScript Techdegree Certificate. I repeated the project from scratch using prisma and typescript, and expanded upon it with the [MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs) Web Docs guide on Server-Side Website Programming.
 
 The project is an online catalog for a small local library, designed to manage and display information about books, authors, genres, and book instances. It provides users with the ability to browse and interact with a catalog of available books, including CRUD functionality for managing the following entities:
 
@@ -82,4 +82,4 @@ http://localhost:5000
 
 ## 👋 Acknowledgments
 
-- Thanks to [MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs) and the [Treehouse](https://teamtreehouse.com/techdegree/full-stack-javascript) coding community for providing invaluable resources and support.
+- Thanks to [MDN](https://developer.mozilla.org/en-US/) and the [Treehouse](https://teamtreehouse.com/) coding community for providing invaluable resources and support.

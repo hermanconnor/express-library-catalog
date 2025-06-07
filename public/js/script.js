@@ -1,10 +1,6 @@
 'use strict';
 
-const initApp = () => {
-  const year = document.getElementById('year');
-  const currentYear = new Date().getFullYear();
-  year.textContent = currentYear;
-
+document.addEventListener('DOMContentLoaded', () => {
   const setTheme = (theme) => {
     const html = document.documentElement;
 
@@ -50,6 +46,4 @@ const initApp = () => {
     : 'light';
 
   setTheme(localStorage.getItem('theme') || systemTheme);
-};
-
-document.addEventListener('DOMContentLoaded', initApp);
+});
