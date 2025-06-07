@@ -39,12 +39,12 @@ The project was developed with modern technologies, including TypeScript, Prisma
 
 Here is a preview of the app:
 
-![Preview of Express Library](./src/public/images/dark-home.png)  
-![Preview of Express Library](./src/public/images/light-book-list.png)
-![Preview of Express Library](./src/public/images/dark-bookinstance-list.png)
-![Preview of Express Library](./src/public/images/dark-book-detail.png)
-![Preview of Express Library](./src/public/images/dark-update-book.png)
-![Preview of Express Library](./src/public/images/dark-delete-book.png)
+![Preview of Express Library](/public/images/dark-home.png)  
+![Preview of Express Library](/public/images/light-book-list.png)
+![Preview of Express Library](/public/images/dark-bookinstance-list.png)
+![Preview of Express Library](/public/images/dark-book-detail.png)
+![Preview of Express Library](/public/images/dark-update-book.png)
+![Preview of Express Library](/public/images/dark-delete-book.png)
 
 ## Acknowledgments
 
